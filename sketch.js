@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(480, 240);
+  createCanvas(480, 272);
   grid = [
     [0,0,0,0],
     [0,0,0,0]
@@ -8,6 +8,10 @@ function setup() {
 
 function draw() {
   background(0);
+  
+  noStroke()
+  fill(3,190,252)
+  rect(0,0,480,32)
   stroke(255)
   
   for(let j = 0; j < 4; j++){
@@ -19,16 +23,18 @@ function draw() {
         fill(255,0,0)
       }
       
-      rect(j*120,i*120,120,120)
+      rect(j*120,i*120+32,120,120)
     }
   }
 }
 
 function mousePressed(){
-  g = floor(mouseX/120);
-  h = floor(mouseY/120);
+  if (mouseY < 272 && mouseY > 32){
+    g = floor(mouseX/120);
+    h = floor((mouseY-32)/120);
   
-  grid[h][g] = 1
+    grid[h][g] = 1
+  }
 }
 
 function mouseReleased(){
